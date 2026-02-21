@@ -1,26 +1,51 @@
 package tests;
 
-
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
+
+    LoginPage loginPage = new LoginPage();
 
     @Test
     public  void loginWithValidCred() {
-        open("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        SelenideElement usernameField = $(By.name ("username"));
-        SelenideElement passwordField = $(By.name ("password"));
-        SelenideElement buttonLogin = $(By.xpath("//button[@type='submit']"));
+        loginPage.usernameField.setValue("Admin");
+        loginPage.passwordField.setValue("admin123");
+        loginPage.buttonLogin.click();
+        //TODO
+    }
 
-        usernameField.setValue("Admin");
-        passwordField.setValue("admin123");
-        buttonLogin.click();
+    @Test
+    public  void loginWithInValidCred() {
+        loginPage.usernameField.setValue("Admin");
+        loginPage.passwordField.setValue("wrong");
+        loginPage.buttonLogin.click();
+        //TODO
+    }
 
+    @Test
+    public  void loginWithInValidUsername() {
+        loginPage.usernameField.setValue("wrong");
+        loginPage.passwordField.setValue("admin123");
+        loginPage.buttonLogin.click();
+        //TODO
+    }
+
+    @Test
+    public  void loginWithInEmptyCreds() {
+        loginPage.usernameField.setValue("");
+        loginPage.passwordField.setValue("");
+        loginPage.buttonLogin.click();
+        //TODO
+    }
+    @Test
+    public  void loginWithInLongUsername() {
+        loginPage.usernameField.setValue("perigtpigpekfpf[pkrpokprfkposrkfpskfpkpfkprfpowkfpwkfpoowfkp");
+        loginPage.passwordField.setValue("");
+        loginPage.buttonLogin.click();
+        //TODO
     }
 
 }
