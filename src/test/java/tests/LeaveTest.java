@@ -10,13 +10,10 @@ public class LeaveTest extends BaseTest {
     public void invalidEmployeeNameSearch() {
 
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
-        //кликнуть на leave вкладку
         app.leavePage.leaveTab.click();
-        //ввести имя сотрудника
         app.leavePage.employeeNameField.setValue("5555555");
-        //кликнуть на кнопку поиска
+        app.leavePage.employeeNameField.shouldBe(Condition.exactValue("5555555"));
         app.leavePage.searchButton.click();
-        //проверить ошибку
         app.leavePage.errorMessage.shouldBe(Condition.visible);
         app.leavePage.errorMessage.shouldBe(Condition.exist);
 

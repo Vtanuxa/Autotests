@@ -1,6 +1,7 @@
 package tests;
 
 
+import com.codeborne.selenide.Condition;
 import org.testng.annotations.Test;
 
 public class AdminTest extends BaseTest {
@@ -9,11 +10,9 @@ public class AdminTest extends BaseTest {
     public void SearchAdmin() {
 
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
-        //Кликнуть на страницу админ
         app.adminPage.adminTab.click();
-        //ввести данные в поле username
         app.adminPage.usernameField.setValue("admin");
-        //нажать на кнопку search
+        app.adminPage.usernameField.shouldBe(Condition.exactValue("admin"));
         app.adminPage.searchButton.click();
 
     }
@@ -21,11 +20,9 @@ public class AdminTest extends BaseTest {
     @Test
     public void SearchEmployeeNameExist() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
-        //Кликнуть на страницу админ
         app.adminPage.adminTab.click();
-        //ввести данные в поле username
-        app.adminPage.EmployeeNameField.setValue("Tanya");
-        //нажать на кнопку search
+        app.adminPage.EmployeeNameField.setValue("admin");
+        app.adminPage.EmployeeNameField.shouldBe(Condition.exactValue("admin"));
         app.adminPage.searchButton.click();
     }
 }
