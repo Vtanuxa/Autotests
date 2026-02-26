@@ -65,11 +65,11 @@ public class LoginTest extends BaseTest {
         app.loginPage.usernameField.shouldHave(Condition.exactValue("perigtpigpekfpf[pkrpokprfkposrkfpskfpkpfkprfpowkfpwkfpoowfkp"));
         app.loginPage.passwordField.setValue("");
         app.loginPage.passwordField.shouldHave(Condition.exactValue(""));
+        app.loginPage.passwordField.shouldHave(Condition.empty);
+        app.loginPage.passwordField.shouldBe(Condition.empty);
         app.loginPage.buttonLogin.click();
-        app.loginPage.errorMessage.shouldHave(Condition.visible);
-        app.loginPage.errorMessage.shouldHave(Condition.text("Invalid username"));
-
-
+        app.loginPage.errorMessageRequiredPassword.shouldBe(Condition.visible);
+        app.loginPage.errorMessageRequiredPassword.shouldHave(Condition.text("Required"));
     }
 
 }
