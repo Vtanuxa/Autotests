@@ -13,7 +13,22 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.36</slf4j.version>
+        <allure.version>2.29.0</allure.version>
+        <aspectj.version>1.9.22</aspectj.version>
     </properties>
+
+    <!-- Управление версиями Allure через BOM -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- TestNG -->
@@ -25,7 +40,6 @@
         </dependency>
 
         <!-- Selenide -->
-        <!-- Source: https://mvnrepository.com/artifact/com.codeborne/selenide -->
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
@@ -33,18 +47,81 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- SLF4J API -->
+        <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
-        <!-- SLF4J Simple - реализация логирования (УБРАЛ scope) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+
+        <!-- Allure TestNG адаптер (версия берётся из BOM) -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Allure Selenide интеграция (версия из BOM) -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Компилятор -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire с поддержкой Allure -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <!-- Слушатель Allure для TestNG -->
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
+                    <!-- Системная переменная для указания папки с результатами -->
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                    <!-- Если используете аннотации @Step, раскомментируйте javaagent с правильным путём для Windows -->
+
+<!--                    <argLine>-javaagent:${settings.localRepository}\org\aspectj\aspectjweaver\${aspectj.version}\aspectjweaver-${aspectj.version}.jar</argLine>-->
+
+                </configuration>
+            </plugin>
+
+            <!-- Плагин Allure для генерации отчётов -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.15.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
