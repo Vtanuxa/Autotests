@@ -13,6 +13,8 @@ public class AdminPage extends BasePage {
     public SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
     public SelenideElement userRoleButton = $(By.xpath("(//div[@class='oxd-select-text oxd-select-text--active'])[1]"));
     public SelenideElement userRoleDropdown = $(By.xpath("//div[@class='oxd-select-dropdown --positon-bottom']"));
+    public SelenideElement statusButton = $(By.xpath("(//div[@class='oxd-select-text oxd-select-text--active'])[2]"));
+    public SelenideElement statusDropdown = $(By.xpath("//div[@class='oxd-select-dropdown --positon-bottom']"));
 
 
 }

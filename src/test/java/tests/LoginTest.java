@@ -1,6 +1,11 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.testng.Tag;
 import org.testng.annotations.Test;
 
 
@@ -8,6 +13,10 @@ public class LoginTest extends BaseTest {
 
 
     @Test
+    @Description("Тест с валидными данными")
+    @Issue("Number 123")
+    @Tag("Regression")
+    @Severity(SeverityLevel.NORMAL)
     public void loginWithValidCred() {
         app.loginPage.usernameField.setValue("Admin");
         app.loginPage.usernameField.shouldBe(Condition.exactValue("Admin"));

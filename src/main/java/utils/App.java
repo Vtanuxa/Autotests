@@ -8,6 +8,7 @@ public class App extends BasePage {
     public AdminPage adminPage = new AdminPage();
     public LeavePage leavePage = new LeavePage();
     public TimePage timePage = new TimePage();
+    public DirectoryPage directoryPage = new DirectoryPage();
 
     public UserCredentials userCreds = new UserCredentials();
 

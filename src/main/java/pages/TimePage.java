@@ -12,5 +12,6 @@ public class TimePage extends BasePage {
     public SelenideElement viewButton = $(By.xpath("//button[@type='submit']"));
     public SelenideElement errorMessage = $(By.xpath("//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
     public SelenideElement errorMessageRequired = $(By.xpath("//*[@class = 'oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
-
+//    public SelenideElement viewButton = $(By.xpath(""));
+//    public SelenideElement viewButton = $(By.xpath(""));
 }
