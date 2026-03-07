@@ -1,20 +1,20 @@
-//*[@id='app']
-//input[@placeholder = 'Имя пользователя']
-//input[@name = 'username']
-//input[@type='password']
-//button[@type='submit']
-(//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')])[1]
-(//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')])[2]
-//div[@id='oxd-toaster_1']
-//div[contains(@class, 'orangehrm-login-logo-mobile')]
-//*[@type='text/javascript']
-//*[@id='ch-close']
-//*[@class='ch-content']
-(//img[@alt='orangehrm-logo'])[1]
-(//img[@alt='orangehrm-logo'])[2]
-(//*[@class='oxd-label'])[1]
-(//*[contains(@class, 'oxd-label')])[1]
-//*[@name='_token']
-//*[contains(@name, 'token')]
-//h5[contains(@class, 'h5')]
-//input[contains(@type, 'hidden')]
+#oxd-toaster_1
+.oxd-layout-context
+.oxd-table-filter-header
+.oxd-topbar
+[id]
+.oxd-form-actions
+#app
+.orangehrm-container
+[role='navigation']
+[aria-label='Sidepanel']
+div#app div.oxd-brand-banner
+div#app div [placeholder='Search']
+div[role^='dia']
+div[role^='ta']
+div[role='table'] div.oxd-table-body
+ul li:first-child
+ul li:last-child
+ul li:nth-child(5)
+div div.oxd-table-card:nth-child(5)
+div div.oxd-table-card:nth-child(5) [role='row']
