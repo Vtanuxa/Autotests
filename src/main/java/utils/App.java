@@ -11,5 +11,6 @@ public class App extends BasePage {
     public DirectoryPage directoryPage = new DirectoryPage();
 
     public UserCredentials userCreds = new UserCredentials();
+    public DBTest dbTest = new DBTest();
 
 }
